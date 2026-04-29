@@ -1,0 +1,36 @@
+# capsule.toml for the Koh0920/flatnotes public fork.
+#
+# Authoring source. Faithful transcription of the proven manifest at
+# ~/.ato/runtimes/koh0920/flatnotes/5.5.8_dc8c2627caca/capsule.toml,
+# minus the [distribution] / chunk_list blocks (pack-time output) and
+# the [pack] exclude list (specific to the local working copy).
+#
+# After forking github.com/dullage/flatnotes to github.com/Koh0920/flatnotes,
+# commit this file at the repo root on the default branch. The repo
+# must also contain a top-level `start.py` shim that launches the
+# upstream entrypoint (the authoring fork has one; the upstream does
+# not). Without `start.py`, `ato resolve` will succeed but `ato run`
+# will fail with FileNotFoundError.
+schema_version = "0.3"
+name = "flatnotes"
+version = "5.5.8"
+type = "app"
+default_target = "app"
+
+[metadata]
+display_name = "Flatnotes"
+description  = "Self-hosted, database-less note-taking — markdown files on disk. Fork of dullage/flatnotes with capsule.toml."
+author       = "Koh0920"
+tags         = ["notes", "markdown", "fastapi", "self-hosted"]
+
+[targets.app]
+runtime         = "source"
+driver          = "python"
+language        = "python"
+runtime_version = "3.11"
+port            = 8082
+run             = "start.py"
+
+[targets.app.env]
+FLATNOTES_AUTH_TYPE = "none"
+FLATNOTES_PATH      = "data"
