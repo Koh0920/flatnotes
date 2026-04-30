@@ -30,6 +30,7 @@ language        = "python"
 runtime_version = "3.11"
 port            = 8082
 run             = "start.py"
+build_command   = "npm ci && npm run build"
 
 [targets.app.env]
 FLATNOTES_AUTH_TYPE = "none"
